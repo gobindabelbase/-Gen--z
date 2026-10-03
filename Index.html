@@ -1,0 +1,3410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07090d">
+<meta name="description" content="ZIGNAL — See it. Know it. Make an impact.">
+<title>ZIGNAL — See it. Know it. Make an impact.</title>
+
+<style>
+:root{
+  --bg:#07090d;
+  --surface:#10131a;
+  --surface-2:#181c25;
+  --surface-3:#202532;
+  --text:#f5f7fb;
+  --muted:#9ca5b5;
+  --primary:#a855f7;
+  --primary-2:#7c3aed;
+  --secondary:#39e58c;
+  --danger:#ff5c7a;
+  --warning:#ffc857;
+  --border:rgba(255,255,255,.08);
+  --shadow:0 20px 60px rgba(0,0,0,.35);
+  --radius:22px;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(168,85,247,.13),transparent 30%),
+    radial-gradient(circle at 90% 20%,rgba(57,229,140,.09),transparent 28%),
+    var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+button,
+input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.container{
+  width:min(1180px,92%);
+  margin:auto;
+}
+
+.page{
+  display:none;
+  min-height:calc(100vh - 75px);
+  animation:pageIn .35s ease;
+}
+
+.page.active{
+  display:block;
+}
+
+@keyframes pageIn{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  height:75px;
+  border-bottom:1px solid var(--border);
+  background:rgba(7,9,13,.82);
+  backdrop-filter:blur(18px);
+}
+
+.nav-inner{
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:25px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:1.45rem;
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+.logo-mark{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:#050507;
+  font-weight:1000;
+  box-shadow:0 0 25px rgba(168,85,247,.3);
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:5px;
+}
+
+.nav-link{
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  padding:10px 12px;
+  border-radius:12px;
+  transition:.25s;
+}
+
+.nav-link:hover,
+.nav-link.active{
+  color:var(--text);
+  background:var(--surface-2);
+}
+
+.nav-link.active{
+  box-shadow:inset 0 -2px var(--primary);
+}
+
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.icon-btn{
+  width:40px;
+  height:40px;
+  border:1px solid var(--border);
+  background:var(--surface);
+  color:var(--text);
+  border-radius:12px;
+}
+
+.menu-btn{
+  display:none;
+}
+
+/* ================= BUTTONS ================= */
+
+.btn{
+  border:0;
+  border-radius:13px;
+  padding:12px 18px;
+  font-weight:800;
+  transition:.25s;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+.btn-primary{
+  color:white;
+  background:linear-gradient(135deg,var(--primary),var(--primary-2));
+  box-shadow:0 10px 30px rgba(124,58,237,.25);
+}
+
+.btn-secondary{
+  color:var(--text);
+  background:var(--surface-2);
+  border:1px solid var(--border);
+}
+
+.btn-green{
+  color:#04120b;
+  background:var(--secondary);
+}
+
+/* ================= HERO ================= */
+
+.hero{
+  min-height:calc(100vh - 75px);
+  display:flex;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero::before,
+.hero::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  filter:blur(80px);
+  pointer-events:none;
+}
+
+.hero::before{
+  width:300px;
+  height:300px;
+  background:rgba(168,85,247,.17);
+  left:-100px;
+  top:15%;
+}
+
+.hero::after{
+  width:300px;
+  height:300px;
+  background:rgba(57,229,140,.1);
+  right:-100px;
+  bottom:10%;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:850px;
+  padding:90px 0;
+}
+
+.eyebrow{
+  color:var(--secondary);
+  font-weight:800;
+  letter-spacing:2px;
+  font-size:.85rem;
+  margin-bottom:18px;
+}
+
+.hero h1{
+  font-size:clamp(3rem,8vw,7rem);
+  line-height:.95;
+  letter-spacing:-4px;
+  margin-bottom:25px;
+}
+
+.gradient-text{
+  background:linear-gradient(90deg,var(--primary),#d08cff,var(--secondary));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  color:var(--muted);
+  max-width:680px;
+  font-size:1.12rem;
+}
+
+.hero-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:30px;
+}
+
+.hero-grid{
+  margin-top:55px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.stat-card{
+  background:rgba(16,19,26,.75);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:20px;
+}
+
+.stat-number{
+  font-size:1.7rem;
+  font-weight:900;
+}
+
+.stat-label{
+  color:var(--muted);
+  font-size:.88rem;
+}
+
+/* ================= SECTION ================= */
+
+.section{
+  padding:85px 0;
+}
+
+.section-head{
+  margin-bottom:35px;
+}
+
+.section-head h2{
+  font-size:clamp(2rem,5vw,3.2rem);
+  margin-bottom:8px;
+}
+
+.section-head p{
+  color:var(--muted);
+  max-width:700px;
+}
+
+.tag{
+  display:inline-flex;
+  padding:5px 10px;
+  border-radius:999px;
+  background:rgba(168,85,247,.12);
+  color:#c993ff;
+  font-size:.75rem;
+  font-weight:800;
+  margin-bottom:12px;
+}
+
+/* ================= CARDS ================= */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.card{
+  background:linear-gradient(145deg,rgba(24,28,37,.96),rgba(16,19,26,.96));
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:24px;
+  box-shadow:var(--shadow);
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(168,85,247,.35);
+}
+
+.card-icon{
+  width:52px;
+  height:52px;
+  border-radius:16px;
+  background:var(--surface-3);
+  display:grid;
+  place-items:center;
+  font-size:1.5rem;
+  margin-bottom:18px;
+}
+
+.card h3{
+  margin-bottom:8px;
+}
+
+.card p{
+  color:var(--muted);
+}
+
+.topic{
+  cursor:pointer;
+  outline:none;
+}
+
+.topic:focus-visible{
+  box-shadow:0 0 0 3px rgba(168,85,247,.35);
+}
+
+/* ================= DISCOVER ================= */
+
+.search-box{
+  display:flex;
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.search-box input{
+  width:100%;
+  padding:15px 17px;
+  border:1px solid var(--border);
+  outline:none;
+  border-radius:15px;
+  background:var(--surface);
+  color:var(--text);
+}
+
+.filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:25px;
+}
+
+.filter{
+  border:1px solid var(--border);
+  background:var(--surface);
+  color:var(--muted);
+  padding:9px 14px;
+  border-radius:999px;
+}
+
+.filter.active,
+.filter:hover{
+  background:rgba(168,85,247,.15);
+  color:var(--text);
+  border-color:rgba(168,85,247,.35);
+}
+
+/* ================= TOPIC DETAIL ================= */
+
+.topic-detail{
+  max-width:920px;
+  margin:auto;
+}
+
+.topic-detail-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:20px;
+  margin-bottom:30px;
+}
+
+.topic-detail-title{
+  font-size:clamp(2.4rem,6vw,4.5rem);
+  line-height:1;
+  margin-bottom:15px;
+  letter-spacing:-2px;
+}
+
+.topic-detail-description{
+  color:var(--muted);
+  font-size:1.08rem;
+  max-width:750px;
+}
+
+.topic-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:18px;
+}
+
+.meta-pill{
+  border:1px solid var(--border);
+  background:var(--surface);
+  padding:7px 12px;
+  border-radius:999px;
+  color:var(--muted);
+  font-size:.8rem;
+}
+
+.essay-card{
+  background:linear-gradient(145deg,rgba(16,19,26,.98),rgba(24,28,37,.98));
+  border:1px solid var(--border);
+  border-radius:26px;
+  padding:clamp(22px,5vw,45px);
+  box-shadow:var(--shadow);
+}
+
+.essay h2{
+  font-size:1.65rem;
+  margin:30px 0 12px;
+}
+
+.essay h2:first-child{
+  margin-top:0;
+}
+
+.essay h3{
+  font-size:1.2rem;
+  margin:25px 0 10px;
+  color:#d7b2ff;
+}
+
+.essay p{
+  color:#c3c9d4;
+  margin-bottom:16px;
+  line-height:1.85;
+}
+
+.essay ul{
+  margin:10px 0 20px 20px;
+  color:#c3c9d4;
+}
+
+.essay li{
+  margin-bottom:9px;
+}
+
+.key-points{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:18px;
+}
+
+.key-point{
+  background:var(--surface-2);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:15px;
+}
+
+.key-point strong{
+  display:block;
+  margin-bottom:4px;
+}
+
+.key-point span{
+  color:var(--muted);
+  font-size:.9rem;
+}
+
+.related-topics{
+  margin-top:30px;
+}
+
+.related-topics .grid{
+  grid-template-columns:repeat(3,1fr);
+}
+
+/* ================= CAMPAIGNS ================= */
+
+.campaign{
+  min-height:210px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.progress{
+  height:8px;
+  background:var(--surface-3);
+  border-radius:999px;
+  overflow:hidden;
+  margin:15px 0;
+}
+
+.progress span{
+  display:block;
+  height:100%;
+  background:linear-gradient(90deg,var(--primary),var(--secondary));
+  border-radius:inherit;
+}
+
+/* ================= QUIZ ================= */
+
+.quiz-wrap{
+  max-width:800px;
+  margin:auto;
+}
+
+.quiz-question{
+  font-size:1.5rem;
+  margin-bottom:20px;
+}
+
+.quiz-options{
+  display:grid;
+  gap:10px;
+}
+
+.quiz-option{
+  width:100%;
+  text-align:left;
+  padding:15px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:var(--surface);
+  color:var(--text);
+  transition:.2s;
+}
+
+.quiz-option:hover{
+  border-color:var(--primary);
+  transform:translateX(3px);
+}
+
+.quiz-result{
+  margin-top:20px;
+  font-size:1.1rem;
+  font-weight:800;
+}
+
+/* ================= ACTION ================= */
+
+.action-list{
+  display:grid;
+  gap:12px;
+  max-width:800px;
+}
+
+.action-item{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  padding:17px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:var(--surface);
+}
+
+.action-item input{
+  width:20px;
+  height:20px;
+  accent-color:var(--secondary);
+}
+
+.action-item.done{
+  opacity:.6;
+  text-decoration:line-through;
+}
+
+/* ================= ABOUT / CREATOR ================= */
+
+.info-card{
+  max-width:850px;
+  margin:auto;
+}
+
+.creator-profile{
+  display:grid;
+  grid-template-columns:180px 1fr;
+  gap:30px;
+  align-items:start;
+}
+
+.creator-avatar{
+  width:180px;
+  height:180px;
+  border-radius:35px;
+  background:
+    linear-gradient(135deg,rgba(168,85,247,.3),rgba(57,229,140,.2)),
+    var(--surface-2);
+  border:1px solid var(--border);
+  display:grid;
+  place-items:center;
+  font-size:4rem;
+}
+
+.creator-profile h2{
+  font-size:2.4rem;
+  margin-bottom:5px;
+}
+
+.creator-role{
+  color:var(--secondary);
+  font-weight:800;
+  margin-bottom:20px;
+}
+
+.bio p{
+  color:var(--muted);
+  margin-bottom:15px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+  border-top:1px solid var(--border);
+  padding:30px 0;
+  margin-top:50px;
+}
+
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.footer-copy{
+  color:var(--muted);
+  font-size:.9rem;
+}
+
+.firebase-status{
+  color:var(--secondary);
+  font-size:.85rem;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:2000;
+  background:var(--surface-3);
+  border:1px solid var(--border);
+  color:var(--text);
+  padding:14px 18px;
+  border-radius:14px;
+  box-shadow:var(--shadow);
+  opacity:0;
+  transform:translateY(20px);
+  pointer-events:none;
+  transition:.3s;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:950px){
+  .nav-links{
+    position:absolute;
+    top:75px;
+    left:0;
+    right:0;
+    padding:15px;
+    background:rgba(7,9,13,.97);
+    border-bottom:1px solid var(--border);
+    display:none;
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .nav-links.open{
+    display:flex;
+  }
+
+  .nav-link{
+    text-align:left;
+  }
+
+  .menu-btn{
+    display:block;
+  }
+
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .hero-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:650px){
+  .section{
+    padding:60px 0;
+  }
+
+  .hero h1{
+    letter-spacing:-2px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero-buttons{
+    flex-direction:column;
+  }
+
+  .hero-buttons .btn{
+    width:100%;
+  }
+
+  .topic-detail-top{
+    flex-direction:column;
+  }
+
+  .key-points{
+    grid-template-columns:1fr;
+  }
+
+  .related-topics .grid{
+    grid-template-columns:1fr;
+  }
+
+  .creator-profile{
+    grid-template-columns:1fr;
+  }
+
+  .creator-avatar{
+    width:130px;
+    height:130px;
+  }
+
+  .search-box{
+    flex-direction:column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+  <div class="container nav-inner">
+
+    <button class="logo" onclick="showPage('home')" style="border:0;background:none;color:inherit;">
+      <span class="logo-mark">Z</span>
+      <span>ZIGNAL</span>
+    </button>
+
+    <nav class="nav-links" id="navLinks">
+      <button class="nav-link active" data-page="home">Home</button>
+      <button class="nav-link" data-page="discover">Discover</button>
+      <button class="nav-link" data-page="campaigns">Campaigns</button>
+      <button class="nav-link" data-page="quiz">Quiz</button>
+      <button class="nav-link" data-page="action">Take Action</button>
+      <button class="nav-link" data-page="about">About</button>
+      <button class="nav-link" data-page="creator">Creator</button>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeBtn" title="Toggle theme">☾</button>
+      <button class="icon-btn menu-btn" id="menuBtn">☰</button>
+    </div>
+
+  </div>
+</header>
+
+<main>
+
+<!-- ================= HOME ================= -->
+
+<section class="page active" id="home">
+
+  <div class="hero">
+    <div class="container">
+
+      <div class="hero-content">
+
+        <div class="eyebrow">AWARENESS • KNOWLEDGE • ACTION</div>
+
+        <h1>
+          SEE IT.<br>
+          <span class="gradient-text">KNOW IT.</span><br>
+          MAKE AN IMPACT.
+        </h1>
+
+        <p>
+          ZIGNAL is a modern awareness platform designed to help young people
+          understand the world around them — from environment and technology
+          to digital life, education, society and responsible action.
+        </p>
+
+        <div class="hero-buttons">
+          <button class="btn btn-primary" onclick="showPage('discover')">
+            Explore Topics →
+          </button>
+
+          <button class="btn btn-secondary" onclick="showPage('quiz')">
+            Test Your Knowledge
+          </button>
+        </div>
+
+        <div class="hero-grid">
+
+          <div class="stat-card">
+            <div class="stat-number">12+</div>
+            <div class="stat-label">Awareness Topics</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number">6</div>
+            <div class="stat-label">Interactive Quiz Questions</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number">∞</div>
+            <div class="stat-label">Ideas for Positive Action</div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ================= DISCOVER ================= -->
+
+<section class="page" id="discover">
+
+  <div class="section">
+    <div class="container">
+
+      <div class="section-head">
+        <span class="tag">DISCOVER</span>
+        <h2>Explore what matters.</h2>
+        <p>
+          Learn about important issues through simple explanations,
+          essays, practical ideas and student-friendly information.
+        </p>
+      </div>
+
+      <div class="search-box">
+        <input
+          id="topicSearch"
+          type="search"
+          placeholder="Search topics..."
+          autocomplete="off"
+        >
+      </div>
+
+      <div class="filters">
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter" data-filter="environment">Environment</button>
+        <button class="filter" data-filter="technology">Technology</button>
+        <button class="filter" data-filter="digital">Digital Life</button>
+        <button class="filter" data-filter="society">Society</button>
+        <button class="filter" data-filter="education">Education</button>
+      </div>
+
+      <div class="grid" id="topicGrid">
+
+        <article class="card topic"
+          data-category="environment"
+          data-topic="climate-awareness"
+          tabindex="0"
+          role="button">
+          <div class="card-icon">🌍</div>
+          <span class="tag">Environment</span>
+          <h3>Climate Awareness</h3>
+          <p>Understand climate change, its causes, effects and the importance of collective action.</p>
+        </article>
+
+        <article class="card topic"
+          data-category="environment"
+          data-topic="water-resources"
+          tabindex="0"
+          role="button">
+          <div class="card-icon">💧</div>
+          <span class="tag">Environment</span>
+          <h3>Water & Resources</h3>
+          <p>Learn why water and natural resources need responsible and sustainable management.</p>
+        </article>
+
+        <article class="card topic"
+          data-category="environment"
+          data-topic="waste-recycling"
+          tabindex="0"
+          role="button">
+          <div class="card-icon">♻️</div>
+          <span class="tag">Environment</span>
+          <h3>Waste & Recycling</h3>
+          <p>Explore waste reduction, reuse, recycling and responsible consumption.</p>
+        </article>
+
+        <article class="card topic"
+          data-category="technology"
+          data-topic="artificial-intelligence"
+          tabindex="0"
+          role="button">
+          <div class="card-icon">🤖</div>
+          <span class="tag">Technology</span>
+          <h3>Artificial Intelligence</h3>
+          <p>Understand AI, its opportunities, limitations, responsibilities and impact on society.</p>
+        </article>
+
+        <article class="card topic"
+          data-category="technology"
+          data-topic="future-technology"
+          tabindex="0"
+          role="button">
+          <div class="card-icon">🚀</div>
+          <span class="tag">Technology</span>
+          <h3>Future Technology</h3>
+          <p>Explore emerging technologies and how innovation may shape everyday life.</p>
+        </article>
+
+        <article class="card topic"
+          data-category="digital"
+          data-topic="cyber-awareness"
+          tabindex="0"
+          role="button">
+          <div class="card-icon">🔐</div>
+          <span class="tag">Digital Life</span>
+          <h3>Cyber Awareness</h3>
+          <p>Learn about passwords, privacy, scams, phishing and safer digital habits.</p>
+        </article>
+
+        <article class="card topic"
+          data-category="digital"
+          data-topic="digital-wellbeing"
+          tabindex="0"
+          role="button">
+          <div class="card-icon">📱</div>
+          <span class="tag">Digital Life</span>
+          <h3>Digital Wellbeing</h3>
+          <p>Build healthier relationships with devices, social media, notifications and online entertainment.</p>
+        </article>
+
+        <article class="card topic"
+          data-category="digital"
+          data-topic="information-literacy"
+          tabindex="0"
+          role="button">
+          <div class="card-icon">📰</div>
+          <span class="tag">Digital Life</span>
+          <h3>Information Literacy</h3>
+          <p>Learn how to identify reliable information and think critically about online content.</p>
+        </article>
+
+        <article class="card topic"
+          data-category="society"
+          data-topic="community"
+          tabindex="0"
+          role="button">
+          <div class="card-icon">🤝</div>
+          <span class="tag">Society</span>
+          <h3>Community</h3>
+          <p>Understand how cooperation, empathy and participation can strengthen communities.</p>
+        </article>
+
+        <article class="card topic"
+          data-category="education"
+          data-topic="smart-learning"
+          tabindex="0"
+          role="button">
+          <div class="card-icon">📚</div>
+          <span class="tag">Education</span>
+          <h3>Smart Learning</h3>
+          <p>Discover effective learning habits, critical thinking and technology-supported education.</p>
+        </article>
+
+        <article class="card topic"
+          data-category="society"
+          data-topic="responsible-citizenship"
+          tabindex="0"
+          role="button">
+          <div class="card-icon">🫱🏻‍🫲🏽</div>
+          <span class="tag">Society</span>
+          <h3>Responsible Citizenship</h3>
+          <p>Explore responsibility, respect, participation and positive contribution to society.</p>
+        </article>
+
+        <article class="card topic"
+          data-category="education"
+          data-topic="critical-thinking"
+          tabindex="0"
+          role="button">
+          <div class="card-icon">🧠</div>
+          <span class="tag">Education</span>
+          <h3>Critical Thinking</h3>
+          <p>Learn how to question information, evaluate evidence and make thoughtful decisions.</p>
+        </article>
+
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ================= TOPIC DETAIL ================= -->
+
+<section class="page" id="topic-detail">
+
+  <div class="section">
+
+    <div class="container">
+
+      <div class="topic-detail">
+
+        <button class="btn btn-secondary" id="backToDiscover">
+          ← Back to Discover
+        </button>
+
+        <div style="height:28px;"></div>
+
+        <div class="topic-detail-top">
+
+          <div>
+            <span class="tag" id="detailCategory">Topic</span>
+
+            <h1 class="topic-detail-title" id="detailTitle">
+              Topic
+            </h1>
+
+            <p class="topic-detail-description" id="detailDescription">
+            </p>
+
+            <div class="topic-meta">
+              <span class="meta-pill" id="detailReading">📖 Student Reading</span>
+              <span class="meta-pill">🌱 Awareness</span>
+              <span class="meta-pill">💡 Action</span>
+            </div>
+          </div>
+
+        </div>
+
+        <article class="essay-card essay" id="essayContent"></article>
+
+        <div class="related-topics">
+
+          <div class="section-head">
+            <span class="tag">KEEP EXPLORING</span>
+            <h2>Related topics</h2>
+          </div>
+
+          <div class="grid" id="relatedTopics"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= CAMPAIGNS ================= -->
+
+<section class="page" id="campaigns">
+
+  <div class="section">
+    <div class="container">
+
+      <div class="section-head">
+        <span class="tag">CAMPAIGNS</span>
+        <h2>Turn awareness into action.</h2>
+        <p>
+          Small actions become meaningful when people practice them consistently.
+        </p>
+      </div>
+
+      <div class="grid">
+
+        <div class="card campaign">
+          <div>
+            <div class="card-icon">🌱</div>
+            <span class="tag">Environment</span>
+            <h3>Green Everyday</h3>
+            <p>
+              Build simple environmentally responsible habits in everyday life.
+            </p>
+          </div>
+          <div>
+            <div class="progress"><span style="width:72%"></span></div>
+            <small style="color:var(--muted)">72% awareness challenge</small>
+          </div>
+        </div>
+
+        <div class="card campaign">
+          <div>
+            <div class="card-icon">📵</div>
+            <span class="tag">Digital Life</span>
+            <h3>Digital Balance</h3>
+            <p>
+              Reflect on screen time, notifications and healthier digital habits.
+            </p>
+          </div>
+          <div>
+            <div class="progress"><span style="width:55%"></span></div>
+            <small style="color:var(--muted)">55% awareness challenge</small>
+          </div>
+        </div>
+
+        <div class="card campaign">
+          <div>
+            <div class="card-icon">🤝</div>
+            <span class="tag">Community</span>
+            <h3>Community Connect</h3>
+            <p>
+              Discover small ways to support classmates, family and your community.
+            </p>
+          </div>
+          <div>
+            <div class="progress"><span style="width:63%"></span></div>
+            <small style="color:var(--muted)">63% awareness challenge</small>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ================= QUIZ ================= -->
+
+<section class="page" id="quiz">
+
+  <div class="section">
+
+    <div class="container">
+
+      <div class="section-head">
+        <span class="tag">QUIZ</span>
+        <h2>Challenge your knowledge.</h2>
+        <p>
+          Answer the questions and see how much you know about awareness topics.
+        </p>
+      </div>
+
+      <div class="card quiz-wrap">
+
+        <div id="quizQuestion" class="quiz-question"></div>
+
+        <div id="quizOptions" class="quiz-options"></div>
+
+        <div id="quizResult" class="quiz-result"></div>
+
+        <button
+          class="btn btn-primary"
+          id="nextQuiz"
+          style="margin-top:20px;"
+          disabled>
+          Next Question →
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= TAKE ACTION ================= -->
+
+<section class="page" id="action">
+
+  <div class="section">
+
+    <div class="container">
+
+      <div class="section-head">
+        <span class="tag">TAKE ACTION</span>
+        <h2>Make your next move.</h2>
+        <p>
+          Complete simple actions and build awareness through practice.
+          Your checklist is saved on this device.
+        </p>
+      </div>
+
+      <div class="action-list" id="actionList">
+
+        <label class="action-item">
+          <input type="checkbox" data-action="0">
+          <span>Use a reusable bottle or cup when possible.</span>
+        </label>
+
+        <label class="action-item">
+          <input type="checkbox" data-action="1">
+          <span>Check the source before sharing information online.</span>
+        </label>
+
+        <label class="action-item">
+          <input type="checkbox" data-action="2">
+          <span>Take a short screen break during long study sessions.</span>
+        </label>
+
+        <label class="action-item">
+          <input type="checkbox" data-action="3">
+          <span>Help keep your school or neighborhood clean.</span>
+        </label>
+
+        <label class="action-item">
+          <input type="checkbox" data-action="4">
+          <span>Learn one new useful concept today.</span>
+        </label>
+
+        <label class="action-item">
+          <input type="checkbox" data-action="5">
+          <span>Share one useful awareness idea with someone.</span>
+        </label>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section class="page" id="about">
+
+  <div class="section">
+
+    <div class="container">
+
+      <div class="section-head">
+        <span class="tag">ABOUT ZIGNAL</span>
+        <h2>Awareness starts with understanding.</h2>
+      </div>
+
+      <div class="card info-card">
+
+        <p>
+          ZIGNAL is a modern awareness and learning platform built around
+          one simple idea: people can make better decisions when they have
+          access to understandable information.
+        </p>
+
+        <br>
+
+        <p>
+          The platform brings together environmental awareness, digital
+          literacy, technology, education, community, safety and responsible
+          action in one place.
+        </p>
+
+        <br>
+
+        <p>
+          ZIGNAL is designed especially for young learners who want to
+          understand important issues without having to navigate complicated
+          information.
+        </p>
+
+        <br>
+
+        <p>
+          The goal is not only to provide information, but also to encourage
+          reflection, discussion and practical action.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= CREATOR ================= -->
+
+<section class="page" id="creator">
+
+  <div class="section">
+
+    <div class="container">
+
+      <div class="section-head">
+        <span class="tag">CREATOR</span>
+        <h2>Meet the creator.</h2>
+        <p>
+          The person behind the idea and development of ZIGNAL.
+        </p>
+      </div>
+
+      <div class="card creator-profile">
+
+        <div class="creator-avatar">
+          👨🏻‍💻
+        </div>
+
+        <div>
+
+          <h2>Anish Belbase</h2>
+
+          <div class="creator-role">
+            Class XI • Computer Science Student
+          </div>
+
+          <div class="bio">
+
+            <p>
+              Anish Belbase is a Class XI student studying at
+              <strong>Shree Kanti Secondary School, Butwal-4, Rupandehi</strong>.
+              He is a Computer Science student with a strong interest in
+              technology, computers and learning new things.
+            </p>
+
+            <p>
+              Born on <strong>12 August 2010</strong>, he was raised in a
+              loving and supportive family. From an early age, he developed
+              curiosity about computers and modern technology. This interest
+              encouraged him to choose Computer Science as a major subject
+              in Class XI.
+            </p>
+
+            <p>
+              He tries to be hardworking, disciplined and responsible in his
+              studies and daily life. He enjoys programming, exploring new
+              technologies and improving his computer skills. He also values
+              spending time with family and friends and taking part in
+              activities that help him develop new skills.
+            </p>
+
+            <p>
+              His goal is to build a successful career in Computer Science
+              and Information Technology, gain knowledge, develop useful
+              technologies and contribute positively to society.
+            </p>
+
+            <p>
+              He believes that success comes through hard work, patience,
+              continuous learning and determination. He works toward his
+              goals step by step and tries to become a better version of
+              himself every day.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+  <div class="container footer-inner">
+
+    <div class="footer-copy">
+      © 2026 ZIGNAL — Created by Anish Belbase 67 (Govinda). All rights reserved.
+    </div>
+
+    <div class="firebase-status" id="firebaseStatus">
+      ● System ready
+    </div>
+
+  </div>
+
+</footer>
+
+
+<div class="toast" id="toast"></div>
+
+
+<!-- ================= FIREBASE ================= -->
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+/*
+==========================================================
+ZIGNAL FIREBASE CONFIGURATION
+==========================================================
+
+Replace these placeholder values with your Firebase
+project configuration.
+
+Firebase Console:
+Project Settings → Your apps → Web app → Config
+==========================================================
+*/
+
+const firebaseConfig = {
+
+  apiKey: "YOUR_API_KEY",
+
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+
+  projectId: "YOUR_PROJECT_ID",
+
+  storageBucket: "YOUR_PROJECT.firebasestorage.app",
+
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+
+  appId: "YOUR_APP_ID"
+
+};
+
+
+let db = null;
+
+try{
+
+  if(
+    firebaseConfig.apiKey !== "YOUR_API_KEY" &&
+    firebaseConfig.projectId !== "YOUR_PROJECT_ID"
+  ){
+
+    const app = initializeApp(firebaseConfig);
+
+    db = getFirestore(app);
+
+    document.getElementById("firebaseStatus").textContent =
+      "● Firebase connected";
+
+  }
+
+}catch(error){
+
+  console.warn("Firebase initialization:",error);
+
+}
+
+
+/*
+==========================================================
+PUBLIC FIRESTORE DEMO FUNCTION
+==========================================================
+*/
+
+window.savePublicSignal = async function(data){
+
+  if(!db){
+
+    showToast("Firebase is not configured yet.");
+
+    return false;
+  }
+
+  try{
+
+    await addDoc(
+      collection(db,"signals"),
+      {
+        ...data,
+        createdAt:serverTimestamp()
+      }
+    );
+
+    showToast("Signal saved successfully.");
+
+    return true;
+
+  }catch(error){
+
+    console.error(error);
+
+    showToast("Could not save signal.");
+
+    return false;
+  }
+
+};
+
+</script>
+
+
+<!-- ================= MAIN JAVASCRIPT ================= -->
+
+<script>
+
+/* =======================================================
+   NAVIGATION
+======================================================= */
+
+const pages = [
+  "home",
+  "discover",
+  "topic-detail",
+  "campaigns",
+  "quiz",
+  "action",
+  "about",
+  "creator"
+];
+
+const navLinks = document.querySelectorAll(".nav-link");
+const navMenu = document.getElementById("navLinks");
+const menuBtn = document.getElementById("menuBtn");
+
+
+function setActiveNav(page){
+
+  navLinks.forEach(link => {
+
+    const target = link.dataset.page;
+
+    link.classList.toggle(
+      "active",
+      target === page
+    );
+
+  });
+
+}
+
+
+function showPage(page, updateHash = true){
+
+  if(!pages.includes(page)){
+    page = "home";
+  }
+
+  document.querySelectorAll(".page").forEach(section => {
+
+    section.classList.remove("active");
+
+  });
+
+  const target = document.getElementById(page);
+
+  if(target){
+    target.classList.add("active");
+  }
+
+  /*
+  Topic detail is technically a page,
+  but navbar should keep Discover highlighted.
+  */
+
+  if(page === "topic-detail"){
+
+    setActiveNav("discover");
+
+  }else{
+
+    setActiveNav(page);
+
+  }
+
+  navMenu.classList.remove("open");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+  if(updateHash){
+
+    if(page === "home"){
+
+      history.pushState(null,"","#home");
+
+    }else{
+
+      history.pushState(null,"","#" + page);
+
+    }
+
+  }
+
+}
+
+
+/* Navbar buttons */
+
+navLinks.forEach(link => {
+
+  link.addEventListener("click",() => {
+
+    showPage(link.dataset.page);
+
+  });
+
+});
+
+
+/* Mobile menu */
+
+menuBtn.addEventListener("click",() => {
+
+  navMenu.classList.toggle("open");
+
+});
+
+
+/* =======================================================
+   TOPIC DATA
+======================================================= */
+
+const topicData = {
+
+
+"climate-awareness":{
+
+  title:"Climate Awareness",
+
+  category:"Environment",
+
+  icon:"🌍",
+
+  description:
+    "Understanding climate change and the choices that can help protect the planet.",
+
+  essay:`
+
+    <h2>Introduction</h2>
+
+    <p>
+      Climate awareness means understanding how Earth's climate works,
+      how human activities influence climate patterns, and why climate
+      change matters to people, communities and ecosystems. Climate is
+      different from daily weather because it describes long-term patterns
+      of temperature, rainfall, wind and other atmospheric conditions.
+      Learning about these patterns helps people understand environmental
+      changes and make informed decisions.
+    </p>
+
+    <p>
+      The modern world depends heavily on energy, transportation,
+      agriculture and industries. Many of these activities release
+      greenhouse gases into the atmosphere. These gases trap heat and
+      contribute to long-term warming. Climate awareness helps students
+      connect these large-scale processes with everyday choices.
+    </p>
+
+    <h2>Why It Matters</h2>
+
+    <p>
+      Climate change can influence ecosystems, agriculture, water
+      availability, human settlements and economic activities. Different
+      communities experience climate-related challenges differently.
+      Understanding these connections is important because environmental
+      decisions made today can influence conditions for future generations.
+    </p>
+
+    <h2>Major Challenges</h2>
+
+    <ul>
+      <li>Increasing greenhouse-gas emissions.</li>
+      <li>Loss of forests and natural ecosystems.</li>
+      <li>Unsustainable consumption of resources.</li>
+      <li>Changing rainfall and temperature patterns.</li>
+      <li>Difficulty adapting vulnerable communities and ecosystems.</li>
+    </ul>
+
+    <h2>What Can Be Done?</h2>
+
+    <p>
+      Climate action can involve both reducing emissions and preparing
+      communities for environmental changes. Renewable energy, efficient
+      transportation, responsible consumption, protection of forests and
+      improved waste management are examples of areas where action can
+      contribute to sustainability.
+    </p>
+
+    <h2>What Students Can Do</h2>
+
+    <p>
+      Students can learn about climate science, reduce unnecessary waste,
+      conserve electricity and water, protect local green spaces and
+      participate in environmental awareness activities. They can also
+      discuss reliable climate information with friends and family.
+    </p>
+
+    <h2>Key Takeaway</h2>
+
+    <div class="key-points">
+      <div class="key-point">
+        <strong>Understand</strong>
+        <span>Learn how climate systems and human activities are connected.</span>
+      </div>
+      <div class="key-point">
+        <strong>Think</strong>
+        <span>Consider the environmental effects of everyday choices.</span>
+      </div>
+      <div class="key-point">
+        <strong>Act</strong>
+        <span>Choose practical and sustainable habits.</span>
+      </div>
+      <div class="key-point">
+        <strong>Share</strong>
+        <span>Help others access reliable environmental information.</span>
+      </div>
+    </div>
+  `
+
+},
+
+
+"water-resources":{
+
+  title:"Water & Resources",
+
+  category:"Environment",
+
+  icon:"💧",
+
+  description:
+    "Understanding the value of water and natural resources and using them responsibly.",
+
+  essay:`
+
+    <h2>Introduction</h2>
+
+    <p>
+      Water and natural resources are fundamental to life. People need
+      water for drinking, agriculture, sanitation, industry and many
+      everyday activities. Natural resources also include forests, soil,
+      minerals, energy sources and biodiversity. Because these resources
+      support both human life and ecosystems, responsible management is
+      essential.
+    </p>
+
+    <h2>Why Water Matters</h2>
+
+    <p>
+      Although Earth contains a large amount of water, only a limited
+      portion is readily available as freshwater for human use. Pollution,
+      inefficient use, changing rainfall patterns and increasing demand
+      can place pressure on water supplies.
+    </p>
+
+    <h2>Resource Challenges</h2>
+
+    <ul>
+      <li>Water pollution and contamination.</li>
+      <li>Excessive water consumption.</li>
+      <li>Deforestation and soil degradation.</li>
+      <li>Wasteful use of materials and energy.</li>
+      <li>Unequal access to essential resources.</li>
+    </ul>
+
+    <h2>Responsible Use</h2>
+
+    <p>
+      Responsible resource use means avoiding unnecessary consumption,
+      reducing waste, protecting natural ecosystems and using resources
+      efficiently. Simple actions such as repairing leaking taps,
+      avoiding unnecessary water use and reducing material waste can
+      contribute to better resource management.
+    </p>
+
+    <h2>Student Actions</h2>
+
+    <p>
+      Students can avoid wasting water at school and home, report leaks,
+      keep water sources clean and participate in local environmental
+      activities. Learning about watersheds and local ecosystems can also
+      help students understand why water protection matters.
+    </p>
+
+    <h2>Key Takeaway</h2>
+
+    <div class="key-points">
+      <div class="key-point">
+        <strong>Conserve</strong>
+        <span>Use water and materials carefully.</span>
+      </div>
+      <div class="key-point">
+        <strong>Protect</strong>
+        <span>Keep water sources and ecosystems clean.</span>
+      </div>
+      <div class="key-point">
+        <strong>Reduce</strong>
+        <span>Avoid unnecessary resource consumption.</span>
+      </div>
+      <div class="key-point">
+        <strong>Educate</strong>
+        <span>Help others understand resource responsibility.</span>
+      </div>
+    </div>
+  `
+
+},
+
+
+"waste-recycling":{
+
+  title:"Waste & Recycling",
+
+  category:"Environment",
+
+  icon:"♻️",
+
+  description:
+    "Learning how waste is created, managed and reduced through responsible choices.",
+
+  essay:`
+
+    <h2>Introduction</h2>
+
+    <p>
+      Waste is produced when materials are discarded because they are no
+      longer wanted or considered useful. Waste can include food scraps,
+      paper, plastics, metals, electronics and many other materials.
+      Effective waste management is important because poorly managed waste
+      can pollute land and water and create risks for communities.
+    </p>
+
+    <h2>The Waste Hierarchy</h2>
+
+    <p>
+      A responsible approach to waste begins with prevention. Reducing
+      unnecessary purchases can prevent waste before it exists. Reusing
+      items can extend their useful life, while recycling can recover
+      materials for new products. Proper disposal remains important for
+      materials that cannot be reused or recycled.
+    </p>
+
+    <h2>Common Challenges</h2>
+
+    <ul>
+      <li>Single-use products and excessive packaging.</li>
+      <li>Improper disposal of waste.</li>
+      <li>Mixing recyclable and non-recyclable materials.</li>
+      <li>Electronic waste and outdated devices.</li>
+      <li>Food waste.</li>
+    </ul>
+
+    <h2>Practical Solutions</h2>
+
+    <p>
+      People can reduce waste by carrying reusable items, repairing
+      products, choosing durable goods and separating waste where
+      recycling systems are available. Food waste can also be reduced
+      through better planning and responsible storage.
+    </p>
+
+    <h2>Student Actions</h2>
+
+    <p>
+      Students can keep classrooms clean, avoid unnecessary disposable
+      products, use both sides of paper when appropriate and participate
+      in recycling or cleanup programs. Schools can also use waste as an
+      educational opportunity by creating simple waste-separation systems.
+    </p>
+
+    <h2>Key Takeaway</h2>
+
+    <div class="key-points">
+      <div class="key-point">
+        <strong>Reduce</strong>
+        <span>Prevent unnecessary waste.</span>
+      </div>
+      <div class="key-point">
+        <strong>Reuse</strong>
+        <span>Give useful products another purpose.</span>
+      </div>
+      <div class="key-point">
+        <strong>Recycle</strong>
+        <span>Separate suitable materials for recovery.</span>
+      </div>
+      <div class="key-point">
+        <strong>Dispose</strong>
+        <span>Handle remaining waste responsibly.</span>
+      </div>
+    </div>
+  `
+
+},
+
+
+"artificial-intelligence":{
+
+  title:"Artificial Intelligence",
+
+  category:"Technology",
+
+  icon:"🤖",
+
+  description:
+    "Understanding AI, its capabilities, limitations and responsible use.",
+
+  essay:`
+
+    <h2>Introduction</h2>
+
+    <p>
+      Artificial Intelligence, commonly called AI, refers to computer
+      systems designed to perform tasks that can involve abilities such as
+      recognizing patterns, processing language, making predictions or
+      generating content. Modern AI systems are increasingly used in
+      education, healthcare, business, science, entertainment and many
+      other areas.
+    </p>
+
+    <h2>How AI Can Help</h2>
+
+    <p>
+      AI can assist people with tasks such as summarizing information,
+      translating languages, analyzing large datasets, generating ideas
+      and supporting learning. Its usefulness depends on the quality of
+      the system, the information provided and the way people evaluate
+      its results.
+    </p>
+
+    <h2>Important Limitations</h2>
+
+    <p>
+      AI systems can produce incorrect information, misunderstand context
+      or reflect limitations in their training and design. Therefore,
+      people should not automatically treat every AI-generated answer as
+      correct. Important information should be checked against reliable
+      sources.
+    </p>
+
+    <h2>Responsible AI Use</h2>
+
+    <ul>
+      <li>Verify important information.</li>
+      <li>Protect personal and sensitive information.</li>
+      <li>Understand when AI-generated content is being used.</li>
+      <li>Use AI as a learning support rather than replacing independent thinking.</li>
+      <li>Consider fairness, privacy and possible consequences.</li>
+    </ul>
+
+    <h2>Students and AI</h2>
+
+    <p>
+      Students can use AI to explore concepts, practice questions,
+      brainstorm ideas and understand difficult topics. However, genuine
+      learning still requires reading, reasoning, practicing and producing
+      one's own work.
+    </p>
+
+    <h2>Key Takeaway</h2>
+
+    <div class="key-points">
+      <div class="key-point">
+        <strong>Explore</strong>
+        <span>Learn what AI can and cannot do.</span>
+      </div>
+      <div class="key-point">
+        <strong>Verify</strong>
+        <span>Check important information independently.</span>
+      </div>
+      <div class="key-point">
+        <strong>Protect</strong>
+        <span>Think carefully before sharing private information.</span>
+      </div>
+      <div class="key-point">
+        <strong>Think</strong>
+        <span>Keep human judgment and critical thinking involved.</span>
+      </div>
+    </div>
+  `
+
+},
+
+
+"future-technology":{
+
+  title:"Future Technology",
+
+  category:"Technology",
+
+  icon:"🚀",
+
+  description:
+    "Exploring emerging technologies and how innovation can shape the future.",
+
+  essay:`
+
+    <h2>Introduction</h2>
+
+    <p>
+      Technology continuously changes the way people communicate, learn,
+      work and solve problems. Future technology refers to emerging ideas,
+      systems and inventions that may become more widely used as research
+      and development continue.
+    </p>
+
+    <h2>Areas of Innovation</h2>
+
+    <p>
+      Artificial intelligence, robotics, renewable energy, advanced
+      computing, biotechnology, space technology and new communication
+      systems are examples of areas receiving significant research and
+      development.
+    </p>
+
+    <h2>Opportunities</h2>
+
+    <p>
+      New technologies may help improve education, scientific research,
+      accessibility, energy efficiency and communication. Technology can
+      also create new careers and allow people to solve problems that were
+      previously difficult to address.
+    </p>
+
+    <h2>Challenges</h2>
+
+    <ul>
+      <li>Privacy and cybersecurity concerns.</li>
+      <li>Unequal access to technology.</li>
+      <li>Changes in employment and required skills.</li>
+      <li>Environmental costs of manufacturing and energy use.</li>
+      <li>Ethical questions around powerful technologies.</li>
+    </ul>
+
+    <h2>Preparing for the Future</h2>
+
+    <p>
+      Young people can prepare by developing digital literacy, programming,
+      communication, creativity, problem-solving and critical thinking
+      skills. Lifelong learning will remain important as technology
+      continues to evolve.
+    </p>
+
+    <h2>Key Takeaway</h2>
+
+    <div class="key-points">
+      <div class="key-point">
+        <strong>Learn</strong>
+        <span>Stay curious about emerging technologies.</span>
+      </div>
+      <div class="key-point">
+        <strong>Adapt</strong>
+        <span>Develop skills that can grow with technology.</span>
+      </div>
+      <div class="key-point">
+        <strong>Question</strong>
+        <span>Consider benefits and possible risks.</span>
+      </div>
+      <div class="key-point">
+        <strong>Create</strong>
+        <span>Use technology to solve meaningful problems.</span>
+      </div>
+    </div>
+  `
+
+},
+
+
+"cyber-awareness":{
+
+  title:"Cyber Awareness",
+
+  category:"Digital Life",
+
+  icon:"🔐",
+
+  description:
+    "Building safer digital habits around accounts, privacy, scams and online security.",
+
+  essay:`
+
+    <h2>Introduction</h2>
+
+    <p>
+      Cyber awareness means understanding common online risks and knowing
+      how to use digital services safely. As people increasingly use
+      phones, computers, social media, online banking and cloud services,
+      basic cybersecurity knowledge has become an important life skill.
+    </p>
+
+    <h2>Account Security</h2>
+
+    <p>
+      Strong, unique passwords reduce the risk that one compromised
+      account will expose other accounts. Where available, multi-factor
+      authentication provides an additional security layer.
+    </p>
+
+    <h2>Phishing and Scams</h2>
+
+    <p>
+      Phishing attempts may use messages, websites or emails that imitate
+      legitimate organizations. A message asking for passwords, security
+      codes or urgent payments should be treated carefully. Checking the
+      source independently can help avoid scams.
+    </p>
+
+    <h2>Privacy</h2>
+
+    <p>
+      Personal information should be shared thoughtfully. Before installing
+      an app or using a website, users should consider what permissions and
+      information are being requested.
+    </p>
+
+    <h2>Student Cyber Habits</h2>
+
+    <ul>
+      <li>Use unique passwords for important accounts.</li>
+      <li>Enable available security features.</li>
+      <li>Keep software updated.</li>
+      <li>Be careful with unexpected links and attachments.</li>
+      <li>Do not share passwords or verification codes.</li>
+    </ul>
+
+    <h2>Key Takeaway</h2>
+
+    <div class="key-points">
+      <div class="key-point">
+        <strong>Pause</strong>
+        <span>Do not react immediately to suspicious messages.</span>
+      </div>
+      <div class="key-point">
+        <strong>Verify</strong>
+        <span>Confirm who is contacting you.</span>
+      </div>
+      <div class="key-point">
+        <strong>Protect</strong>
+        <span>Secure accounts and personal information.</span>
+      </div>
+      <div class="key-point">
+        <strong>Update</strong>
+        <span>Keep devices and applications updated.</span>
+      </div>
+    </div>
+  `
+
+},
+
+
+"digital-wellbeing":{
+
+  title:"Digital Wellbeing",
+
+  category:"Digital Life",
+
+  icon:"📱",
+
+  description:
+    "Building a healthier and more intentional relationship with technology.",
+
+  essay:`
+
+    <h2>Introduction</h2>
+
+    <p>
+      Digital wellbeing is about using technology in ways that support
+      learning, communication, creativity and everyday life without allowing
+      digital activities to unnecessarily interfere with responsibilities
+      or personal time. Phones, social media, games and online services can
+      be useful, but intentional use is important.
+    </p>
+
+    <h2>Why Digital Balance Matters</h2>
+
+    <p>
+      Constant notifications and frequent switching between applications
+      can make it harder to concentrate on a single task. Creating periods
+      of focused study and reducing unnecessary interruptions can make
+      digital devices more useful rather than allowing them to dominate
+      attention.
+    </p>
+
+    <h2>Common Challenges</h2>
+
+    <ul>
+      <li>Constant notifications.</li>
+      <li>Unplanned scrolling.</li>
+      <li>Difficulty focusing during study.</li>
+      <li>Using multiple apps at the same time.</li>
+      <li>Feeling pressure to respond immediately online.</li>
+    </ul>
+
+    <h2>Building Better Habits</h2>
+
+    <p>
+      Students can turn off unnecessary notifications, keep devices away
+      during focused study periods, organize important applications and
+      take regular breaks from screens. Technology can also be used
+      intentionally for learning, communication and creative work.
+    </p>
+
+    <h2>Digital Wellbeing and Students</h2>
+
+    <p>
+      A healthy digital routine is not about avoiding technology. Instead,
+      it is about deciding when technology is useful and when attention
+      should be directed elsewhere. Study time, family time, hobbies,
+      physical activity and rest can all coexist with responsible digital
+      use.
+    </p>
+
+    <h2>Practical Student Actions</h2>
+
+    <ul>
+      <li>Create a distraction-free study period.</li>
+      <li>Disable unnecessary notifications.</li>
+      <li>Keep entertainment separate from focused study time.</li>
+      <li>Review which apps actually provide value.</li>
+      <li>Take regular breaks during long digital tasks.</li>
+    </ul>
+
+    <h2>Key Takeaway</h2>
+
+    <div class="key-points">
+      <div class="key-point">
+        <strong>Intentional</strong>
+        <span>Use technology with a clear purpose.</span>
+      </div>
+      <div class="key-point">
+        <strong>Focused</strong>
+        <span>Protect periods of uninterrupted concentration.</span>
+      </div>
+      <div class="key-point">
+        <strong>Balanced</strong>
+        <span>Make room for offline activities too.</span>
+      </div>
+      <div class="key-point">
+        <strong>Responsible</strong>
+        <span>Choose digital habits that support your goals.</span>
+      </div>
+    </div>
+  `
+
+},
+
+
+"information-literacy":{
+
+  title:"Information Literacy",
+
+  category:"Digital Life",
+
+  icon:"📰",
+
+  description:
+    "Learning how to evaluate information before believing or sharing it.",
+
+  essay:`
+
+    <h2>Introduction</h2>
+
+    <p>
+      Information literacy is the ability to find, understand, evaluate
+      and use information effectively. In the digital age, people can
+      encounter thousands of posts, videos, headlines and messages every
+      day. Not all of them are accurate or trustworthy.
+    </p>
+
+    <h2>Why Verification Matters</h2>
+
+    <p>
+      False or misleading information can spread quickly when people share
+      content without checking it. Verification encourages users to pause,
+      examine evidence and compare information with reliable sources.
+    </p>
+
+    <h2>Questions to Ask</h2>
+
+    <ul>
+      <li>Who created this information?</li>
+      <li>What evidence is provided?</li>
+      <li>When was it published or updated?</li>
+      <li>Are other reliable sources reporting the same information?</li>
+      <li>Could the headline be designed mainly to attract attention?</li>
+    </ul>
+
+    <h2>Critical Digital Reading</h2>
+
+    <p>
+      A responsible reader separates facts from opinions and recognizes
+      that photographs, videos and graphics can also be presented without
+      sufficient context. Reading beyond a headline and checking original
+      sources can improve understanding.
+    </p>
+
+    <h2>Students and Information</h2>
+
+    <p>
+      Students can develop strong research habits by using credible books,
+      educational resources and trustworthy websites. When preparing
+      assignments, they should record sources and compare information
+      instead of relying on a single online post.
+    </p>
+
+    <h2>Key Takeaway</h2>
+
+    <div class="key-points">
+      <div class="key-point">
+        <strong>Question</strong>
+        <span>Do not accept every claim automatically.</span>
+      </div>
+      <div class="key-point">
+        <strong>Check</strong>
+        <span>Look for evidence and reliable sources.</span>
+      </div>
+      <div class="key-point">
+        <strong>Compare</strong>
+        <span>Use multiple trustworthy sources.</span>
+      </div>
+      <div class="key-point">
+        <strong>Think</strong>
+        <span>Separate evidence from opinion.</span>
+      </div>
+    </div>
+  `
+
+},
+
+
+"community":{
+
+  title:"Community",
+
+  category:"Society",
+
+  icon:"🤝",
+
+  description:
+    "Understanding how cooperation, empathy and participation help communities grow.",
+
+  essay:`
+
+    <h2>Introduction</h2>
+
+    <p>
+      A community is formed by people who share a place, institution,
+      interest or common purpose. Families, schools, neighborhoods and
+      online groups can all function as communities. Strong communities
+      depend on cooperation, respect, communication and responsibility.
+    </p>
+
+    <h2>Why Community Matters</h2>
+
+    <p>
+      People often solve problems more effectively when they cooperate.
+      Communities can provide opportunities for learning, support,
+      creativity and participation. A student who helps classmates,
+      respects school spaces or participates in a local activity is
+      contributing to the community.
+    </p>
+
+    <h2>Challenges</h2>
+
+    <ul>
+      <li>Lack of communication.</li>
+      <li>Exclusion or discrimination.</li>
+      <li>Conflicts between different viewpoints.</li>
+      <li>Lack of participation.</li>
+      <li>Neglect of shared spaces and responsibilities.</li>
+    </ul>
+
+    <h2>Building Stronger Communities</h2>
+
+    <p>
+      Strong communities grow when people listen to one another, respect
+      differences and cooperate on shared goals. Small acts such as helping
+      someone understand a lesson, keeping shared spaces clean or
+      participating in community activities can create positive effects.
+    </p>
+
+    <h2>Student Role</h2>
+
+    <p>
+      Students can contribute by supporting classmates, participating in
+      school activities, volunteering where appropriate and communicating
+      respectfully. Leadership is not always about having a title; it can
+      also mean taking responsibility when something needs to be improved.
+    </p>
+
+    <h2>Key Takeaway</h2>
+
+    <div class="key-points">
+      <div class="key-point">
+        <strong>Connect</strong>
+        <span>Build respectful relationships.</span>
+      </div>
+      <div class="key-point">
+        <strong>Listen</strong>
+        <span>Understand different perspectives.</span>
+      </div>
+      <div class="key-point">
+        <strong>Participate</strong>
+        <span>Contribute to shared activities.</span>
+      </div>
+      <div class="key-point">
+        <strong>Support</strong>
+        <span>Help others where you can.</span>
+      </div>
+    </div>
+  `
+
+},
+
+
+"smart-learning":{
+
+  title:"Smart Learning",
+
+  category:"Education",
+
+  icon:"📚",
+
+  description:
+    "Using effective study strategies, technology and critical thinking to learn better.",
+
+  essay:`
+
+    <h2>Introduction</h2>
+
+    <p>
+      Smart learning means learning with purpose rather than simply
+      spending more time studying. It combines good study habits, active
+      practice, useful technology, reflection and understanding.
+    </p>
+
+    <h2>Active Learning</h2>
+
+    <p>
+      Reading is useful, but learning becomes stronger when students also
+      explain concepts in their own words, solve problems, practice
+      questions and review mistakes. Active recall and spaced review can
+      help students revisit information over time.
+    </p>
+
+    <h2>Technology in Learning</h2>
+
+    <p>
+      Digital tools can provide simulations, educational videos,
+      interactive exercises and access to information. However, students
+      should select tools based on whether they actually improve
+      understanding rather than using technology simply because it is
+      available.
+    </p>
+
+    <h2>Common Problems</h2>
+
+    <ul>
+      <li>Passive reading without practice.</li>
+      <li>Distractions during study sessions.</li>
+      <li>Memorizing without understanding.</li>
+      <li>Using unreliable study resources.</li>
+      <li>Leaving revision until the last moment.</li>
+    </ul>
+
+    <h2>Better Study Habits</h2>
+
+    <p>
+      Students can divide large topics into smaller goals, practice
+      regularly, review difficult concepts and test themselves without
+      looking at answers first. Keeping track of mistakes can also reveal
+      which topics need additional attention.
+    </p>
+
+    <h2>Key Takeaway</h2>
+
+    <div class="key-points">
+      <div class="key-point">
+        <strong>Understand</strong>
+        <span>Focus on concepts, not only memorization.</span>
+      </div>
+      <div class="key-point">
+        <strong>Practice</strong>
+        <span>Use questions and real problems.</span>
+      </div>
+      <div class="key-point">
+        <strong>Review</strong>
+        <span>Return to difficult topics regularly.</span>
+      </div>
+      <div class="key-point">
+        <strong>Reflect</strong>
+        <span>Learn from mistakes and improve your method.</span>
+      </div>
+    </div>
+  `
+
+},
+
+
+"responsible-citizenship":{
+
+  title:"Responsible Citizenship",
+
+  category:"Society",
+
+  icon:"🫱🏻‍🫲🏽",
+
+  description:
+    "Understanding responsibility, respect and participation in society.",
+
+  essay:`
+
+    <h2>Introduction</h2>
+
+    <p>
+      Responsible citizenship involves understanding that individual
+      actions can affect other people and shared environments. Citizenship
+      includes respecting others, following legitimate rules, protecting
+      shared resources and participating constructively in community life.
+    </p>
+
+    <h2>Responsibility</h2>
+
+    <p>
+      Responsibility begins with everyday actions. Keeping public spaces
+      clean, respecting school rules, treating people fairly and using
+      digital platforms responsibly are examples of behaviors that
+      contribute to a healthy society.
+    </p>
+
+    <h2>Respect and Diversity</h2>
+
+    <p>
+      Communities contain people with different experiences, abilities,
+      opinions and backgrounds. Respectful communication allows people to
+      disagree without unnecessary hostility and creates space for
+      cooperation.
+    </p>
+
+    <h2>Digital Citizenship</h2>
+
+    <p>
+      Citizenship also applies online. Responsible digital citizens think
+      before posting, respect privacy, avoid spreading harmful information
+      and communicate thoughtfully.
+    </p>
+
+    <h2>Student Role</h2>
+
+    <p>
+      Students can practice citizenship by following school responsibilities,
+      helping others, participating in constructive activities and learning
+      about issues that affect their communities.
+    </p>
+
+    <h2>Key Takeaway</h2>
+
+    <div class="key-points">
+      <div class="key-point">
+        <strong>Respect</strong>
+        <span>Treat people and shared spaces responsibly.</span>
+      </div>
+      <div class="key-point">
+        <strong>Participate</strong>
+        <span>Contribute positively to community life.</span>
+      </div>
+      <div class="key-point">
+        <strong>Think</strong>
+        <span>Consider how actions affect others.</span>
+      </div>
+      <div class="key-point">
+        <strong>Contribute</strong>
+        <span>Use your skills to create positive change.</span>
+      </div>
+    </div>
+  `
+
+},
+
+
+"critical-thinking":{
+
+  title:"Critical Thinking",
+
+  category:"Education",
+
+  icon:"🧠",
+
+  description:
+    "Learning how to question claims, evaluate evidence and make thoughtful decisions.",
+
+  essay:`
+
+    <h2>Introduction</h2>
+
+    <p>
+      Critical thinking is the process of carefully examining information,
+      assumptions and evidence before reaching a conclusion. It does not
+      mean rejecting everything. Instead, it means being willing to ask
+      questions and change a conclusion when stronger evidence appears.
+    </p>
+
+    <h2>Why It Matters</h2>
+
+    <p>
+      Students encounter information from teachers, books, websites,
+      social media, videos and conversations. Critical thinking helps them
+      distinguish evidence-based information from unsupported claims.
+    </p>
+
+    <h2>Questions for Critical Thinking</h2>
+
+    <ul>
+      <li>What exactly is being claimed?</li>
+      <li>What evidence supports the claim?</li>
+      <li>Is the source reliable?</li>
+      <li>Could there be another explanation?</li>
+      <li>What information might be missing?</li>
+    </ul>
+
+    <h2>Critical Thinking in Education</h2>
+
+    <p>
+      Instead of memorizing an answer without understanding it, students
+      can ask why a concept works, compare different approaches and test
+      their understanding through examples. This approach can improve
+      problem-solving across subjects.
+    </p>
+
+    <h2>Online Critical Thinking</h2>
+
+    <p>
+      Online content often combines facts, opinions, entertainment and
+      advertising. Checking sources and looking for supporting evidence
+      can help users make better judgments about what they encounter.
+    </p>
+
+    <h2>Key Takeaway</h2>
+
+    <div class="key-points">
+      <div class="key-point">
+        <strong>Question</strong>
+        <span>Ask what is actually being claimed.</span>
+      </div>
+      <div class="key-point">
+        <strong>Evidence</strong>
+        <span>Look for reliable supporting information.</span>
+      </div>
+      <div class="key-point">
+        <strong>Compare</strong>
+        <span>Consider alternative explanations.</span>
+      </div>
+      <div class="key-point">
+        <strong>Reflect</strong>
+        <span>Be willing to revise your conclusion.</span>
+      </div>
+    </div>
+  `
+
+}
+
+};
+
+
+/* =======================================================
+   TOPIC SUB-PAGE SYSTEM
+======================================================= */
+
+const topicCards = document.querySelectorAll(".topic");
+
+
+function openTopic(topicId, updateHash = true){
+
+  const topic = topicData[topicId];
+
+  if(!topic){
+    showToast("Topic not found.");
+    return;
+  }
+
+  document.getElementById("detailCategory").textContent =
+    topic.category;
+
+  document.getElementById("detailTitle").textContent =
+    topic.icon + " " + topic.title;
+
+  document.getElementById("detailDescription").textContent =
+    topic.description;
+
+  document.getElementById("essayContent").innerHTML =
+    topic.essay;
+
+  /*
+  Related topics
+  */
+
+  const relatedContainer =
+    document.getElementById("relatedTopics");
+
+  relatedContainer.innerHTML = "";
+
+  Object.entries(topicData)
+    .filter(([id]) => id !== topicId)
+    .slice(0,3)
+    .forEach(([id,item]) => {
+
+      const card = document.createElement("article");
+
+      card.className = "card topic";
+
+      card.tabIndex = 0;
+
+      card.innerHTML = `
+
+        <div class="card-icon">${item.icon}</div>
+
+        <span class="tag">${item.category}</span>
+
+        <h3>${item.title}</h3>
+
+        <p>${item.description}</p>
+
+      `;
+
+      card.addEventListener("click",() => {
+        openTopic(id);
+      });
+
+      card.addEventListener("keydown",(event) => {
+
+        if(event.key === "Enter" || event.key === " "){
+
+          event.preventDefault();
+
+          openTopic(id);
+
+        }
+
+      });
+
+      relatedContainer.appendChild(card);
+
+    });
+
+
+  showPage("topic-detail",false);
+
+  if(updateHash){
+
+    history.pushState(
+      null,
+      "",
+      "#topic/" + topicId
+    );
+
+  }
+
+}
+
+
+topicCards.forEach(card => {
+
+  card.addEventListener("click",() => {
+
+    openTopic(card.dataset.topic);
+
+  });
+
+  card.addEventListener("keydown",(event) => {
+
+    if(event.key === "Enter" || event.key === " "){
+
+      event.preventDefault();
+
+      openTopic(card.dataset.topic);
+
+    }
+
+  });
+
+});
+
+
+document
+  .getElementById("backToDiscover")
+  .addEventListener("click",() => {
+
+    showPage("discover");
+
+  });
+
+
+/* =======================================================
+   SEARCH + FILTER
+======================================================= */
+
+const searchInput =
+  document.getElementById("topicSearch");
+
+const filters =
+  document.querySelectorAll(".filter");
+
+
+let currentFilter = "all";
+
+
+function filterTopics(){
+
+  const search =
+    searchInput.value.trim().toLowerCase();
+
+  topicCards.forEach(card => {
+
+    const title =
+      card.querySelector("h3").textContent.toLowerCase();
+
+    const description =
+      card.querySelector("p").textContent.toLowerCase();
+
+    const category =
+      card.dataset.category;
+
+    const matchesSearch =
+      title.includes(search) ||
+      description.includes(search);
+
+    const matchesFilter =
+      currentFilter === "all" ||
+      category === currentFilter;
+
+    card.style.display =
+      matchesSearch && matchesFilter
+      ? ""
+      : "none";
+
+  });
+
+}
+
+
+searchInput.addEventListener(
+  "input",
+  filterTopics
+);
+
+
+filters.forEach(filter => {
+
+  filter.addEventListener("click",() => {
+
+    filters.forEach(f =>
+      f.classList.remove("active")
+    );
+
+    filter.classList.add("active");
+
+    currentFilter =
+      filter.dataset.filter;
+
+    filterTopics();
+
+  });
+
+});
+
+
+/* =======================================================
+   QUIZ
+======================================================= */
+
+const quizQuestions = [
+
+  {
+    question:"Which practice can help reduce unnecessary waste?",
+    options:[
+      "Buying more disposable products",
+      "Reducing and reusing items",
+      "Throwing everything together",
+      "Ignoring waste"
+    ],
+    answer:1
+  },
+
+  {
+    question:"What is an important digital security habit?",
+    options:[
+      "Sharing passwords",
+      "Using the same password everywhere",
+      "Checking suspicious links carefully",
+      "Posting private information publicly"
+    ],
+    answer:2
+  },
+
+  {
+    question:"What does critical thinking involve?",
+    options:[
+      "Believing every claim",
+      "Ignoring evidence",
+      "Evaluating information and evidence",
+      "Never changing an opinion"
+    ],
+    answer:2
+  },
+
+  {
+    question:"What is digital wellbeing mainly about?",
+    options:[
+      "Never using technology",
+      "Using technology intentionally and responsibly",
+      "Using every application available",
+      "Staying online all day"
+    ],
+    answer:1
+  },
+
+  {
+    question:"Which action supports responsible citizenship?",
+    options:[
+      "Damaging shared spaces",
+      "Ignoring community problems",
+      "Respecting others and shared responsibilities",
+      "Spreading unverified information"
+    ],
+    answer:2
+  },
+
+  {
+    question:"Why is information verification useful?",
+    options:[
+      "All online information is automatically correct",
+      "It helps distinguish reliable information from unsupported claims",
+      "It makes research unnecessary",
+      "It prevents learning"
+    ],
+    answer:1
+  }
+
+];
+
+
+let quizIndex = 0;
+let quizScore = 0;
+let quizAnswered = false;
+
+
+const quizQuestion =
+  document.getElementById("quizQuestion");
+
+const quizOptions =
+  document.getElementById("quizOptions");
+
+const quizResult =
+  document.getElementById("quizResult");
+
+const nextQuiz =
+  document.getElementById("nextQuiz");
+
+
+function renderQuiz(){
+
+  const q =
+    quizQuestions[quizIndex];
+
+  quizAnswered = false;
+
+  quizResult.textContent =
+    `Question ${quizIndex + 1} of ${quizQuestions.length}`;
+
+  nextQuiz.disabled = true;
+
+  nextQuiz.textContent =
+    quizIndex === quizQuestions.length - 1
+    ? "Finish Quiz"
+    : "Next Question →";
+
+  quizQuestion.textContent =
+    q.question;
+
+  quizOptions.innerHTML = "";
+
+  q.options.forEach((option,index) => {
+
+    const button =
+      document.createElement("button");
+
+    button.className =
+      "quiz-option";
+
+    button.textContent =
+      option;
+
+    button.addEventListener("click",() => {
+
+      if(quizAnswered) return;
+
+      quizAnswered = true;
+
+      if(index === q.answer){
+
+        quizScore++;
+
+        button.style.borderColor =
+          "var(--secondary)";
+
+        button.style.background =
+          "rgba(57,229,140,.1)";
+
+        quizResult.textContent =
+          "✓ Correct!";
+
+      }else{
+
+        button.style.borderColor =
+          "var(--danger)";
+
+        button.style.background =
+          "rgba(255,92,122,.1)";
+
+        quizResult.textContent =
+          "Not quite — review the topic and try again.";
+
+        quizOptions.children[q.answer].style.borderColor =
+          "var(--secondary)";
+
+      }
+
+      nextQuiz.disabled = false;
+
+    });
+
+    quizOptions.appendChild(button);
+
+  });
+
+}
+
+
+nextQuiz.addEventListener("click",() => {
+
+  if(!quizAnswered) return;
+
+  if(quizIndex === quizQuestions.length - 1){
+
+    quizQuestion.textContent =
+      "Quiz Complete! 🎉";
+
+    quizOptions.innerHTML = "";
+
+    quizResult.textContent =
+      `Your score: ${quizScore}/${quizQuestions.length}`;
+
+    nextQuiz.textContent =
+      "Restart Quiz";
+
+    quizIndex = 0;
+    quizScore = 0;
+
+    quizAnswered = false;
+
+    nextQuiz.disabled = false;
+
+    nextQuiz.onclick = () => {
+
+      nextQuiz.onclick = null;
+
+      renderQuiz();
+
+    };
+
+    return;
+
+  }
+
+  quizIndex++;
+
+  renderQuiz();
+
+});
+
+
+renderQuiz();
+
+
+/* =======================================================
+   TAKE ACTION + LOCAL STORAGE
+======================================================= */
+
+const actionItems =
+  document.querySelectorAll(
+    "#actionList input[type='checkbox']"
+  );
+
+
+actionItems.forEach(input => {
+
+  const key =
+    "zignal-action-" + input.dataset.action;
+
+  input.checked =
+    localStorage.getItem(key) === "true";
+
+  updateActionStyle(input);
+
+  input.addEventListener("change",() => {
+
+    localStorage.setItem(
+      key,
+      input.checked
+    );
+
+    updateActionStyle(input);
+
+  });
+
+});
+
+
+function updateActionStyle(input){
+
+  const item =
+    input.closest(".action-item");
+
+  if(!item) return;
+
+  item.classList.toggle(
+    "done",
+    input.checked
+  );
+
+}
+
+
+/* =======================================================
+   THEME
+======================================================= */
+
+const themeBtn =
+  document.getElementById("themeBtn");
+
+
+let lightMode =
+  localStorage.getItem("zignal-theme") === "light";
+
+
+function applyTheme(){
+
+  if(lightMode){
+
+    document.documentElement.style.setProperty(
+      "--bg","#f4f6f8"
+    );
+
+    document.documentElement.style.setProperty(
+      "--surface","#ffffff"
+    );
+
+    document.documentElement.style.setProperty(
+      "--surface-2","#edf0f4"
+    );
+
+    document.documentElement.style.setProperty(
+      "--surface-3","#e3e7ed"
+    );
+
+    document.documentElement.style.setProperty(
+      "--text","#111318"
+    );
+
+    document.documentElement.style.setProperty(
+      "--muted","#5d6572"
+    );
+
+    themeBtn.textContent = "☀";
+
+  }else{
+
+    document.documentElement.style.setProperty(
+      "--bg","#07090d"
+    );
+
+    document.documentElement.style.setProperty(
+      "--surface","#10131a"
+    );
+
+    document.documentElement.style.setProperty(
+      "--surface-2","#181c25"
+    );
+
+    document.documentElement.style.setProperty(
+      "--surface-3","#202532"
+    );
+
+    document.documentElement.style.setProperty(
+      "--text","#f5f7fb"
+    );
+
+    document.documentElement.style.setProperty(
+      "--muted","#9ca5b5"
+    );
+
+    themeBtn.textContent = "☾";
+
+  }
+
+}
+
+
+themeBtn.addEventListener("click",() => {
+
+  lightMode = !lightMode;
+
+  localStorage.setItem(
+    "zignal-theme",
+    lightMode ? "light" : "dark"
+  );
+
+  applyTheme();
+
+});
+
+
+applyTheme();
+
+
+/* =======================================================
+   TOAST
+======================================================= */
+
+let toastTimer;
+
+
+function showToast(message){
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent =
+    message;
+
+  toast.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer =
+    setTimeout(() => {
+
+      toast.classList.remove("show");
+
+    },3000);
+
+}
+
+
+/* =======================================================
+   HASH ROUTING
+======================================================= */
+
+function loadFromHash(){
+
+  const hash =
+    window.location.hash.replace("#","");
+
+  if(hash.startsWith("topic/")){
+
+    const topicId =
+      hash.substring("topic/".length);
+
+    if(topicData[topicId]){
+
+      openTopic(topicId,false);
+
+      return;
+
+    }
+
+  }
+
+  const normalPage =
+    hash || "home";
+
+  if(pages.includes(normalPage)){
+
+    showPage(normalPage,false);
+
+  }else{
+
+    showPage("home",false);
+
+  }
+
+}
+
+
+window.addEventListener(
+  "hashchange",
+  loadFromHash
+);
+
+
+window.addEventListener(
+  "popstate",
+  loadFromHash
+);
+
+
+loadFromHash();
+
+
+/* =======================================================
+   PUBLIC API
+======================================================= */
+
+window.ZIGNAL = {
+
+  showPage,
+
+  openTopic,
+
+  savePublicSignal:
+    window.savePublicSignal || null
+
+};
+
+</script>
+
+</body>
+</html></html>
